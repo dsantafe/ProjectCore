@@ -1,0 +1,36 @@
+﻿@model ProjectCore.Logica.Models.ViewModel.ProjectsDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Title)</td>
+        <td>@Html.DisplayFor(model => model.Title)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Details)</td>
+        <td>@Html.DisplayFor(model => model.Details)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ExpectedCompletionDate)</td>
+        <td>@Html.DisplayFor(model => model.ExpectedCompletionDate)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.CreatedAt)</td>
+        <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.UpdateAt)</td>
+        <td>@Html.DisplayFor(model => model.UpdateAt)</td>
+    </tr>
+</table>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.ActionLink(" ", "Index", "Projects", null, new { @class = "btn btn-primary fas fa-arrow-circle-left" })
+    </div>
+</div>

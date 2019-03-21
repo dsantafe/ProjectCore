@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using ProjectCore.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ProjectCore.Services;
 
 namespace ProjectCore
 {
@@ -37,10 +39,24 @@ namespace ProjectCore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+                    {
+                        config.SignIn.RequireConfirmedEmail = true;
+                    })
+                  .AddEntityFrameworkStores<ApplicationDbContext>()
+                  .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            services.Configure<DataProtectionTokenProviderOptions>(o =>
+            {
+                o.Name = "Default";
+                o.TokenLifespan = TimeSpan.FromHours(1);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
