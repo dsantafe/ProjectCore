@@ -11,6 +11,7 @@
 
 <table class="table table-bordered">
     <tr>
+        <td>Tasks</td>
         <td>
             @Html.DisplayNameFor(model => model.Title)
         </td>
@@ -31,6 +32,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.ActionLink(" ", "Index", "Tasks", new { projectId = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

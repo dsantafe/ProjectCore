@@ -1,0 +1,95 @@
+﻿@model ProjectCore.Logica.Models.BindingModel.TasksCreateBindingModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create Tasks</h2>
+
+<form action="/Tasks/Create" method="post">
+
+    @Html.HiddenFor(m => m.ProjectId)
+
+    <div class="form-row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.Title)
+            @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.Details)
+            @Html.EditorFor(m => m.Details, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.Details, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.ExpirationDate)
+            @Html.EditorFor(m => m.ExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.ExpirationDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.IsCompleted)
+            <br />
+            @Html.CheckBoxFor(m => m.IsCompleted, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.IsCompleted, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.Effort)
+            @Html.EditorFor(m => m.Effort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.Effort, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.RemainingWork)
+            @Html.EditorFor(m => m.RemainingWork, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.RemainingWork, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.ActivityId)
+            @Html.DropDownListFor(m => m.ActivityId,
+                                  new SelectList(ViewBag.Activities, "Id", "Name"),
+                                  new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ActivityId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.PriorityId)
+            @Html.DropDownListFor(m => m.PriorityId,
+                                  new SelectList(ViewBag.Priorities, "Id", "Name"),
+                                  new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PriorityId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.StateId)
+            @Html.DropDownListFor(m => m.StateId,
+                                  new SelectList(ViewBag.States, "Id", "Name"),
+                                  new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-12">
+            <br />
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+            </button>
+
+            @Html.ActionLink(" ",
+                            "Index",
+                            "Tasks",
+                            new { projectId = Model.ProjectId },
+                            new { @class = "btn btn-primary fas fa-undo-alt" })
+        </div>
+    </div>
+
+</form>

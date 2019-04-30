@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ProjectCore.Logica.Models.ViewModel.TasksIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Tasks</h2>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Projects", "Index", "Projects")
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Tasks of @ViewBag.Project.Title</li>
+    </ol>
+</nav>
+
+@Html.ActionLink(" ",
+    "Create",
+    "Tasks",
+    new { projectId = ViewBag.Project.Id },
+    new { @class = "btn btn-primary fas fa-plus-circle" })
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Title)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Details)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Effort)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.RemainingWork)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.State)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Activity)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Priority)
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Effort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RemainingWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+        </tr>
+    }
+</table>
