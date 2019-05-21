@@ -12,6 +12,7 @@
 <table class="table table-bordered">
     <tr>
         <td>Tasks</td>
+        <td>Calendar</td>
         <td>
             @Html.DisplayNameFor(model => model.Title)
         </td>
@@ -31,30 +32,33 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.ActionLink(" ", "Index", "Tasks", new { projectId = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpectedCompletionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateAt)
-            </td>
-            <td>
-                @Html.ActionLink(" ", "Edit", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
-                @Html.ActionLink(" ", "Details", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-info-circle" })
-                @Html.ActionLink(" ", "Delete", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-trash" })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.ActionLink(" ", "Index", "Tasks", new { projectId = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Calendar", "Tasks", new { projectId = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedCompletionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateAt)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-edit" })
+            @Html.ActionLink(" ", "Details", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-info-circle" })
+            @Html.ActionLink(" ", "Delete", "Projects", new { id = item.Id }, new { @class = "btn btn-primary btn-sm fas fa-trash" })
+        </td>
+    </tr>
     }
 </table>
