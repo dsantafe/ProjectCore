@@ -1,0 +1,77 @@
+﻿@model ProjectCore.Logica.Models.BindingModel.ProjectsCreateBindingModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.Title)
+        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.Details)
+        @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+        
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.ExpectedCompletionDate)
+        @Html.EditorFor(model => model.ExpectedCompletionDate, new { htmlAttributes = new { @class = "form-control" } })
+        
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        <button id="btnCreateProject" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+        </button>
+        @Html.ActionLink(" ", "Index", "ProjectsJson", null, new { @class = "btn btn-primary fas fa-arrow-circle-left" })
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnCreateProject').click(function () {
+            CreateProject();
+        });
+    });
+
+    function CreateProject() {
+
+        var projectsJsonCreateBindingModel = {
+            'Title': $('#Title').val(),
+            'Details': $('#Details').val(),
+            'ExpectedCompletionDate': $('#ExpectedCompletionDate').val()
+        };
+
+        $.post('/ProjectsJson/Create', projectsJsonCreateBindingModel).done(function (data) {
+
+            var isSuccessful = data.isSuccessful;
+
+            if (isSuccessful) {
+                window.location.href = "/ProjectsJson/Index";
+            }
+
+        });
+
+    }
+</script>
+
+
+
+
+
+
+
+
